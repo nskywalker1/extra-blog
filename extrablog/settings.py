@@ -1,10 +1,13 @@
 from pathlib import Path
+from dotenv import load_dotenv
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-shfqa^7kbq876%c0h_c)#vyvy!(b4q!xg!bqq#j2-h4fk)p#)m'
 
 DEBUG = True
+load_dotenv()
 
 ALLOWED_HOSTS = []
 
@@ -51,8 +54,13 @@ WSGI_APPLICATION = 'extrablog.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('POSTGRES_DB', 'db01'),
+        'HOST': os.getenv('POSTGRES_HOST', 'localhost'),
+        'PORT': os.getenv('POSTGRES_PORT', 5432),
+        'USER': os.getenv('POSTGRES_USER', 'postgres'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        'ATOMIC_REQUESTS': True,
     }
 }
 
@@ -80,5 +88,6 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = 'static/'
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
