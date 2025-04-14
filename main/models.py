@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.urls import reverse
 
 
 class Category(models.Model):
@@ -49,6 +50,9 @@ class Post(models.Model):
     is_published = models.BooleanField(default=False)
 
     objects = PostManager()
+
+    def get_absolute_url(self):
+        return reverse('main:post_detail', kwargs={'post_slug': self.slug})
 
     def total_comments(self):
         return self.comments.count()
