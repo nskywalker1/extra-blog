@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block content %}
+    <main class="tm-main d-flex justify-content-center">
+        <div class="row tm-row tm-mb-120 d-flex justify-content-center">
+            <div class="col-12">
+                <h2 class="tm-color-primary tm-post-title tm-mb-60 text-center mt-3">Login </h2>
+            </div>
+            <div class="col-lg-7 tm-contact-left">
+                <form method="POST" class="mb-5 ml-auto mr-0 tm-contact-form">
+                    {% csrf_token %}
+                    <div class="form-group row mb-4 justify-content-center">
+                        <label class="col-sm-3 col-form-label text-right tm-color-primary">{{ form.email.label }}:</label>
+                        <input class="form-control mr-0 ml-auto m-2 justify-content-center" type="email"
+                               name="{{ form.email.name }}">
+                        <label class="col-sm-3 col-form-label text-right tm-color-primary">{{ form.password.label }}: </label>
+                        <input class="form-control mr-0 ml-auto m-2" type="password" name="{{ form.password.name }}">
+                    </div>
+                    <div class="form-group row text-right">
+                        <div class="col-12 d-flex align-items-center justify-content-between p-1">
+                            <button type="submit" class="tm-btn tm-btn-primary tm-btn-small">Submit</button>
+                            <a href="" style="color: #0CC">No account? Create now!</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+{% endblock %}

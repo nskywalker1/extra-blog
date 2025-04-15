@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
@@ -40,7 +41,7 @@ class Post(models.Model):
     title = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
     body = models.TextField()
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     video = models.FileField(upload_to='videos/%Y/%m/%d', blank=True)
     preview_image = models.ImageField(upload_to='images/%Y/%m/%d', blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='posts_by_category')
@@ -52,7 +53,7 @@ class Post(models.Model):
     objects = PostManager()
 
     def get_absolute_url(self):
-        return reverse('main:post_detail', kwargs={'post_slug': self.slug})
+        return reverse('login:post_detail', kwargs={'post_slug': self.slug})
 
     def total_comments(self):
         return self.comments.count()
@@ -68,7 +69,7 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)

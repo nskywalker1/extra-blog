@@ -39,7 +39,7 @@ class Migration(migrations.Migration):
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
-                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='posts_by_category', to='main.category')),
+                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='posts_by_category', to='login.category')),
             ],
             options={
                 'verbose_name': 'Post',
@@ -54,7 +54,7 @@ class Migration(migrations.Migration):
                 ('author', models.CharField(max_length=100)),
                 ('content', models.TextField()),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('post', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='comments', to='main.post')),
+                ('post', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='comments', to='login.post')),
             ],
         ),
         migrations.CreateModel(
@@ -74,7 +74,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='post',
             name='tags',
-            field=models.ManyToManyField(blank=True, related_name='posts_by_tags', to='main.tag'),
+            field=models.ManyToManyField(blank=True, related_name='posts_by_tags', to='login.tag'),
         ),
         migrations.AddIndex(
             model_name='post',
