@@ -1,6 +1,20 @@
 from django.shortcuts import render, redirect
-from .forms import UserLoginForm
+from .forms import UserLoginForm, UserRegistrationForm
 from django.contrib.auth import login, authenticate, logout
+
+
+def user_register(request):
+    if request.user.is_authenticated:
+        return redirect('main:home')
+    if request.method == 'POST':
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('main:home')
+    else:
+        form = UserRegistrationForm()
+    return render(request, 'users/register.html', {'form': form})
 
 
 def user_login(request):
