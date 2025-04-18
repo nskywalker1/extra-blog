@@ -45,3 +45,9 @@ class UserLoginForm(forms.Form):
             if user is None:
                 raise forms.ValidationError("Invalid email or password")
             return self.cleaned_data
+
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['avatar', 'username', 'description', 'gender', 'age']
