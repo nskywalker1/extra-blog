@@ -354,6 +354,27 @@ ul {
     border-radius: 50%;
 }
 
+.comment {
+    display: flex;
+    align-items: flex-start;
+}
+
+.comment-body {
+    max-width: 76%;
+}
+
+.comment-text {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+.comment-img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+
 .tm-btn-primary:hover {
     background-color: #09b6b6;
     color: white;
