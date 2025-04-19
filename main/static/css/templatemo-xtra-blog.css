@@ -328,8 +328,30 @@ ul {
     border: none;
 }
 
+.tm-btn-danger {
+    background-color: #E41D1D;
+    color: white;
+    border: none;
+    padding: 8px 43px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.tm-btn-danger:hover {
+    opacity: 0.5;
+}
+
 .tm-btn-small {
     padding: 8px 33px;
+}
+
+.noimg {
+    width: 150px;
+    height: 150px;
+    text-align: center;
+    background-color: #c6c4c4;
+    border: 1px dashed black;
+    border-radius: 50%;
 }
 
 .tm-btn-primary:hover {

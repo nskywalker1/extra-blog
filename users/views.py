@@ -44,7 +44,13 @@ def profile(request):
         form = UserProfileForm(data=request.POST, files=request.FILES, instance=user)
         if form.is_valid():
             form.save()
-            return redirect('main:home')
+            return redirect('users:profile')
     else:
         form = UserProfileForm(instance=user)
     return render(request, 'users/profile.html', {'form': form})
+
+
+@login_required(login_url='users:login')
+def user_logout(request):
+    logout(request)
+    return redirect('users:login')
