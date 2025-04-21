@@ -53,7 +53,7 @@ class Post(models.Model):
     objects = PostManager()
 
     def get_absolute_url(self):
-        return reverse('login:post_detail', kwargs={'post_slug': self.slug})
+        return reverse('main:post_detail', kwargs={'post_slug': self.slug})
 
     def total_comments(self):
         return self.comments.count()

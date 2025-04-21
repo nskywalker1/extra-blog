@@ -1,7 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import UserLoginForm, UserRegistrationForm, UserProfileForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
+
+from .models import User
 
 
 def user_register(request):
@@ -48,6 +50,15 @@ def profile(request):
     else:
         form = UserProfileForm(instance=user)
     return render(request, 'users/profile.html', {'form': form})
+
+
+def profile_view(request, username):
+    user = get_object_or_404(User, username=username)
+    if request.user == user:
+        return redirect('users:profile')
+    return render(request, 'users/profile_view.html', {
+        'user_profile': user,
+    })
 
 
 @login_required(login_url='users:login')

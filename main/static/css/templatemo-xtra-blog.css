@@ -369,6 +369,18 @@ ul {
     white-space: normal;
 }
 
+.profile {
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #0cc;
+    padding: 50px;
+}
+
+
 .comment-img {
     border-radius: 50%;
     width: 100px;

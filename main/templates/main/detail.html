@@ -48,8 +48,8 @@
                                     <div class="comment">
                                         <figure class="tm-comment-figure">
                                             <img class="comment-img" src="{{ comment.author.avatar.url }}" alt="">
-                                            <figcaption
-                                                    class="tm-color-primary text-center">{{ comment.author.username }}</figcaption>
+                                            <a class="tm-color-primary text-center d-flex justify-content-center"
+                                               href="{% url 'users:profile_view' comment.author.username %}">{{ comment.author.username }}</a>
                                         </figure>
                                         <div class="comment-body">
                                             <p class="comment-text">{{ comment.content }}</p>

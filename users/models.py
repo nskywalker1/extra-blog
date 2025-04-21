@@ -24,9 +24,9 @@ class User(AbstractBaseUser, PermissionsMixin):
         FEMALE = 'female'
 
     email = models.EmailField(unique=True)
-    username = models.CharField(max_length=255, unique=True)
+    username = models.CharField(max_length=50, unique=True)
     avatar = models.ImageField(upload_to='avatars', blank=True)
-    description = models.TextField(blank=True)
+    description = models.TextField(max_length=255, blank=True)
     age = models.PositiveSmallIntegerField(blank=True, null=True)
     gender = models.CharField(max_length=6, choices=GenderChoices.choices, blank=True)
     is_active = models.BooleanField(default=True)
