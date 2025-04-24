@@ -9,7 +9,7 @@
     <main class="tm-main d-flex justify-content-center">
         <div class="row tm-row tm-mb-120 d-flex justify-content-center">
             <div class="col-12">
-                <h2 class="tm-color-primary tm-post-title tm-mb-60 text-center mt-3">Login </h2>
+                <h2 class="tm-color-primary tm-post-title tm-mb-60 text-center mt-3">Login</h2>
             </div>
             <div class="col-lg-7 tm-contact-left">
                 <form method="POST" class="mb-5 ml-auto mr-0 tm-contact-form">
@@ -20,6 +20,9 @@
                                name="{{ form.email.name }}">
                         <label class="col-sm-3 col-form-label text-right tm-color-primary">{{ form.password.label }}: </label>
                         <input class="form-control mr-0 ml-auto m-2" type="password" name="{{ form.password.name }}">
+                        {% for error in form.non_field_errors %}
+                            <li style="color: red">{{ error }}</li>
+                        {% endfor %}
                     </div>
                     <div class="form-group row text-right">
                         <div class="col-12 d-flex align-items-center justify-content-between p-1">

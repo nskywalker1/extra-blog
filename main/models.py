@@ -2,6 +2,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
+from slugify import slugify as slugify_unicode
 
 
 class Category(models.Model):
@@ -48,7 +49,7 @@ class Post(models.Model):
     tags = models.ManyToManyField(Tag, blank=True, related_name='posts_by_tags')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    is_published = models.BooleanField(default=False)
+    is_published = models.BooleanField(default=True)
 
     objects = PostManager()
 
@@ -60,6 +61,11 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify_unicode(self.title)
+        super().save(*args, **kwargs)
 
     class Meta:
         ordering = ['title']

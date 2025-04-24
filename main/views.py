@@ -1,6 +1,6 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404, redirect
-from .forms import CommentForm
+from .forms import CommentForm, PostForm
 from .models import Post
 
 
@@ -33,3 +33,16 @@ def post_detail(request, post_slug):
     else:
         form = CommentForm()
     return render(request, 'main/detail.html', {"post": post, 'comments': comments, "form": form})
+
+
+def create_post(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            return redirect('main:home')
+    else:
+        form = PostForm()
+    return render(request, 'main/create.html', {"form": form})

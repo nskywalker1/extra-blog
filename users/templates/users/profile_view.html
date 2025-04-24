@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Profile - {{ user.username }}
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <main class="tm-main d-flex justify-content-center">
+            <div class="col-lg-6 tm-mb-60 tm-person-col d-flex justify-content-center">
+                <div class="profile">
+                    <div class="avatar d-flex justify-content-center">
+                        {% if user_profile.avatar %}
+                            <img src="{{ user_profile.avatar.url }}" alt="Avatar"
+                                 style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%; border: 2px solid #ccc;">
+                        {% else %}
+                            <div class="noimg"></div>
+                        {% endif %}
+                    </div>
+                    <p class="tm-color-primary"><strong>Username: </strong>{{ user_profile.username }}</p>
+                    <p class="tm-color-primary"><strong>Description: </strong>{{ user_profile.description }}</p>
+                    <p class="tm-color-primary"><strong>Age: </strong>{{ user_profile.age }}</p>
+                    <p class="tm-color-primary"><strong>Gender: </strong>{{ user_profile.gender }}</p>
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock %}

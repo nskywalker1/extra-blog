@@ -2,19 +2,16 @@
 {% load static %}
 
 {% block title %}
-
+    Post - {{ post.title }}
 {% endblock %}
 
 
 {% block content %}
     <div class="container-fluid">
         <main class="tm-main">
-            <!-- Search form -->
-
             <div class="row tm-row">
                 <div class="col-12">
                     <hr class="tm-hr-primary tm-mb-55">
-                    <!-- Video player 1422x800 -->
                     {% if post.video %}
                         <video width="954" height="535" controls class="video-fixed">
                             <source src="{{ post.video.url }}" type="video/mp4">
